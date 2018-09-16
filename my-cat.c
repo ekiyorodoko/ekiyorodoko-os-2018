@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
                 exit(1);
                 //return EXIT_FAILURE;
             }else{
-                printf("--%d--", argv[i]);
+                printf("--%s--\n", argv[i]);
                 // read the file
                 char input[512];
                 while(fgets(input, 512, fp)){
