@@ -4,15 +4,34 @@
 int main(int argc, char *argv[]){
 
     // Loop to read file
+    if(argc > 1){
+        FILE *fp;
+        // Loop over arguments
+        for (int i = 1; i < argc; i=i+1){
+            
+            // code segment to read file
+            fp = fopen(argv[i], "r");
 
-        // Check if file exists
-        // Get lines and print
-
-    //return file
-        
-    
+            // check if file is null
+            if(fp == NULL){
+                printf("cannot open file\n");
+                exit(1);
+                //return EXIT_FAILURE;
+            }else{
+                printf("--%d--", argv[i]);
+                // read the file
+                char input[512];
+                while(fgets(input, 512, fp)){
+                    printf(input);
+                }
+            }
+            printf("\n\n");
+        }
+        fclose(fp);
+    }
+    return 0;    
 }
+    
 
-//code segment to read file
 
 
