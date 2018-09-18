@@ -24,6 +24,11 @@ int main(int argc, char *argv[]){
                 while(fgets(input, sizeof input, fp)){
                     printf(input);
                 }
+                // int ch;
+
+                // while((ch=getchar())!=EOF){
+                //     input = putchar(ch)
+                // }
             }
             printf("\n\n");
         }
