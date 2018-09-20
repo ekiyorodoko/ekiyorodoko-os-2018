@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
                     printf("my grep: cannot open file\n");
                     exit(1);
                 }else{
-                    char input[512];
+                    char input[1024];
                     printf("--%s--\n", argv[i]);
                     // read the file
                     while(fgets(input, sizeof input, fp)!=NULL){

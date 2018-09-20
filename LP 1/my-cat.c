@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
                 printf("--%s--\n", argv[i]);
                 // read the file
                 char input[512];
-                while(fgets(input, sizeof input, fp)){
+                while(fgets(input, sizeof input, fp)!=NULL){
                     printf(input);
                 }
                 // int ch;
