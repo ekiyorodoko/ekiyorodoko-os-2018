@@ -20,10 +20,10 @@ int main(int argc, char *argv[]){
             }else{
                 printf("--%s--\n", argv[i]);
                 // read the file
-                char input[512];
-                while(fgets(input, sizeof input, fp)!=NULL){
+                char input[1024];
+                while(fgets(input, sizeof input, fp)!=NULL)
                     printf(input);
-                }
+
                 // int ch;
 
                 // while((ch=getchar())!=EOF){
