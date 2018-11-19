@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <fcntl.h>
-// #include <sys/wait.h>
+#include <sys/wait.h>
 
 
 int main(int argc, char *argv[]){
@@ -57,6 +57,8 @@ int main(int argc, char *argv[]){
             // Array of commands to be passed to exec
             char *exec_array[10] = {NULL};
             
+            //
+
             int arr_len = sizeof(cmd);
 
             // check for redirection
@@ -75,10 +77,17 @@ int main(int argc, char *argv[]){
                 }
             }
 
+            const char *new_exec[10] = {bin_path, exec_array[1], exec_array[2], exec_array[3], exec_array[4], exec_array[5],
+                                        exec_array[6], exec_array[7], exec_array[8], exec_array[9]};
+            
+            const char *new_exec_[10] = {usr_bin_path, exec_array[1], exec_array[2], exec_array[3], exec_array[4], exec_array[5],
+                                        exec_array[6], exec_array[7], exec_array[8], exec_array[9]};
+            
+
             pid_t pid = fork();
             if(pid==0){
                 if(access(bin_path,X_OK)==0){
-                    exec_array[0] = bin_path;
+                    //exec_array[0] = bin_path;
                     if(is_redirection==1){
                         // redirect file
                         // freopen()
@@ -88,16 +97,16 @@ int main(int argc, char *argv[]){
                         dup2(fileno(output_), fileno(stderr));
                         fclose(output_);
                     }
-                    execvp(bin_path,&exec_array);
+                    execv(bin_path, new_exec);
                 }else if(access(usr_bin_path,X_OK)==0){
-                    exec_array[0] = usr_bin_path;
+                    //exec_array[0] = usr_bin_path;
                     if(is_redirection==1){
                         FILE *output_ = fopen(output_file,"w+");
                         dup2(fileno(output_), fileno(stdout));
                         dup2(fileno(output_), fileno(stderr));
                         fclose(output_);
                     }
-                    execvp(usr_bin_path,&exec_array);
+                    execv(usr_bin_path, new_exec_);
                 }else{
                     printf("Access denied to path");
                 }
